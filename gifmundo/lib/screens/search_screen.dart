@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/giphy_service.dart';
 import '../services/local_storage_service.dart';
+import '../services/auth_service.dart';
 import '../state/gif_search_state.dart';
-import '../themes/theme_switcher.dart'; 
+import '../themes/theme_switcher.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -21,12 +22,20 @@ class SearchScreenState extends State<SearchScreen> {
     final giphyService = Provider.of<GiphyService>(context);
     final gifSearchState = Provider.of<GifSearchState>(context);
     final localStorageService = Provider.of<LocalStorageService>(context);
+    final authService = Provider.of<AuthService>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gif Mundo'),
-        actions: const [
-          ThemeSwitcher(), 
+        actions: [
+          const ThemeSwitcher(),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await authService.signOut();
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -54,7 +63,7 @@ class SearchScreenState extends State<SearchScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  FocusScope.of(context).unfocus(); // Oculta el teclado
+                  FocusScope.of(context).unfocus();
                   gifSearchState.setLoading(true);
                   final gifs = await giphyService.searchGifs(gifSearchState.query);
                   gifSearchState.updateGifs(gifs);
