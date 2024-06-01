@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../services/giphy_service.dart';
 import '../services/local_storage_service.dart';
 import '../state/gif_search_state.dart';
-import '../themes/theme_switcher.dart'; 
+import '../themes/theme_switcher.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -26,7 +26,7 @@ class SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         title: const Text('Gif Mundo'),
         actions: const [
-          ThemeSwitcher(), 
+          ThemeSwitcher(),
         ],
       ),
       body: SingleChildScrollView(
@@ -134,6 +134,21 @@ class SearchScreenState extends State<SearchScreen> {
                             children: <Widget>[
                               Image.network(gifSearchState.gifs[index]['images']['downsized']['url']),
                               Text(gifSearchState.gifs[index]['title']),
+                              ElevatedButton(
+                              onPressed: () {
+                                final gifData = gifSearchState.gifs[index];
+                                gifSearchState.setSelectedGif(gifData); // Actualiza el GIF seleccionado en el estado global o provider
+                                Navigator.pushNamed(
+                                  context,
+                                  '/download', // Ruta a la pantalla de descarga
+                                  arguments: {
+                                    'url': gifData['images']['downsized']['url'],
+                                    'fileName': gifData['title'],
+                                  },
+                                );
+                              },
+                              child: const Text('Descargar'),
+                            ),
                             ],
                           ),
                         );
