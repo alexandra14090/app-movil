@@ -137,10 +137,10 @@ class SearchScreenState extends State<SearchScreen> {
                               ElevatedButton(
                               onPressed: () {
                                 final gifData = gifSearchState.gifs[index];
-                                gifSearchState.setSelectedGif(gifData); // Actualiza el GIF seleccionado en el estado global o provider
+                                gifSearchState.setSelectedGif(gifData); 
                                 Navigator.pushNamed(
                                   context,
-                                  '/download', // Ruta a la pantalla de descarga
+                                  '/download', 
                                   arguments: {
                                     'url': gifData['images']['downsized']['url'],
                                     'fileName': gifData['title'],

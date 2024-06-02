@@ -6,7 +6,7 @@ class GifSearchState extends ChangeNotifier {
   String query = '';
   List<dynamic> gifs = [];
   bool isLoading = false;
-  dynamic selectedGif; // Campo para almacenar el GIF seleccionado
+  dynamic selectedGif; 
 
   void updateQuery(String newQuery) {
     query = newQuery;
