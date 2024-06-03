@@ -17,12 +17,12 @@ class DownloadScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Download Screen'),
+        title: const Text('Descarga tu Gif'),
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            _downloadFile(url, fileName);
+          onPressed: () async {
+            await _downloadFile(context, url, fileName);
           },
           child: Text('Download $fileName'),
         ),
@@ -30,7 +30,7 @@ class DownloadScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _downloadFile(String url, String fileName) async {
+  Future<void> _downloadFile(BuildContext context, String url, String fileName) async {
     final status = await _checkPermission();
     if (status) {
       try {
@@ -42,6 +42,14 @@ class DownloadScreen extends StatelessWidget {
           openFileFromNotification: true,
         );
         _logger.info('Download started for $fileName');
+        
+        // Mostrar SnackBar
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('¡tu Gif esta descargado!'),
+          ),
+        );
       } catch (e) {
         _logger.severe('Error: $e');
       }

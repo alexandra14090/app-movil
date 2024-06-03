@@ -8,6 +8,9 @@ import 'state/gif_search_state.dart';
 import 'state/theme_provider.dart';
 import 'screens/search_screen.dart';
 import 'screens/download_screen.dart';
+import 'screens/about_us_screen.dart'; 
+import 'screens/contact_us_screen.dart';
+import 'screens/login_screen.dart'; // Importa la pantalla de inicio de sesión
 import 'themes/themes.dart';
 import 'package:logging/logging.dart';
 
@@ -38,7 +41,8 @@ void _setupLogging() {
 }
 
 class MyApp extends StatelessWidget {
-   const MyApp({super.key});
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -54,10 +58,13 @@ class MyApp extends StatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: themeProvider.themeMode,
-            initialRoute: '/',
+            initialRoute: '/login', // Establece la pantalla de inicio de sesión como la ruta inicial
             routes: {
               '/': (context) => const SearchScreen(),
               '/download': (context) => DownloadScreen(),
+              '/about': (context) => const AboutUsScreen(), 
+              '/contact': (context) => const ContactUsScreen(),
+              '/login': (context) => const LoginScreen(), // Ruta de la pantalla de inicio de sesión
             },
             debugShowCheckedModeBanner: false,
           );

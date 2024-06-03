@@ -29,6 +29,34 @@ class SearchScreenState extends State<SearchScreen> {
           ThemeSwitcher(),
         ],
       ),
+      drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/icons/GifMundo.png'), 
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: null,
+              ),
+              ListTile(
+                title: const Text('Quienes somos'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/about');
+                },
+              ),
+              ListTile(
+                title: const Text('Contáctanos'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/contact');
+                },
+              ),
+            ],
+          ),
+        ),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Padding(
