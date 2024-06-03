@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869693438502",
+    "project_id": "giffinalflutter",
+    "storage_bucket": "giffinalflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869693438502:android:ac59d34beeb450a7f9c4e7",
+        "android_client_info": {
+          "package_name": "com.example.final_flutte_gif"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2Kkiiu8j7464mj2eU-HKD_T7CVy7RNig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
